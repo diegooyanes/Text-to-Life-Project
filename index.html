@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path of Choices</title>
+    <link rel="icon" href="images/logo.png" type="image/png">
+    <style>
+        body {
+            font-family: "Times New Roman", sans-serif;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            color: #222;
+            font-size: 2.5em;
+            margin-top: 10px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        p {
+            background-color: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        .choice-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .choice {
+            width: 200px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .choice img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .choice img:hover {
+            transform: scale(1.05);
+        }
+        .description {
+            font-size: 1em;
+            margin-top: 10px;
+            color: #444;
+            font-weight: bold;
+        }
+        .message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #444;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #555;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Path of Choices</h1>
+<p class="message" id="message">This game involves choosing different paths, each with an option for generosity or greed. Like in the parable of "The Rich Man and Lazarus," your choices will ultimately reveal whether you reach a good place in heaven or a less desirable destination.</p>
+<p class="message" id="message">Which path would you choose?</p>
+
+<div class="choice-container">
+    <div class="choice" onclick="makeChoice('greed')">
+        <img id="greedImg" src="images/pairs/greed1.jpg" alt="Greedy choice">
+        <p id="greedDesc" class="description">Luxury Vacation</p>
+    </div>
+    <div class="choice" onclick="makeChoice('generosity')">
+        <img id="generosityImg" src="images/pairs/generosity1.jpg" alt="Generous choice">
+        <p id="generosityDesc" class="description">Volunteering at a Shelter</p>
+    </div>
+</div>
+
+<script>
+    let greedCount = 0;
+    let generosityCount = 0;
+    let totalChoices = 0;
+    let currentPair = 1;
+
+    const descriptions = [
+        ["Luxury Vacation", "Volunteering at a Shelter"],
+        ["Expensive Jewelry", "Donating to a Charity"],
+        ["Gambling", "Supporting a Friend in Need"],
+        ["Buying a Sports Car", "Assisting an Elderly Person"],
+        ["High-End Fashion", "Giving Clothes to the Needy"],
+        ["Gourmet Meal for One", "Serving Food at a Soup Kitchen"],
+        ["Hoarding Money", "Donating to Education"],
+        ["Building a Private Pool", "Constructing a Community Playground"],
+        ["Exclusive VIP Event", "Spending Time with Family"]
+    ];
+
+    function makeChoice(choice) {
+        if (choice === 'greed') {
+            greedCount++;
+        } else {
+            generosityCount++;
+        }
+        totalChoices++;
+
+        if (greedCount >= 5) {
+            showFinalImage("bad_place");
+            return;
+        } else if (generosityCount >= 5) {
+            showFinalImage("good_place");
+            return;
+        }
+
+        currentPair = (currentPair % 9) + 1;
+        updateImages();
+    }
+
+    function updateImages() {
+        document.getElementById('greedImg').src = `images/pairs/greed${currentPair}.jpg`;
+        document.getElementById('generosityImg').src = `images/pairs/generosity${currentPair}.jpg`;
+        document.getElementById('greedDesc').innerText = descriptions[currentPair - 1][0];
+        document.getElementById('generosityDesc').innerText = descriptions[currentPair - 1][1];
+    }
+
+    function showFinalImage(place) {
+        if (place === "bad_place") {
+            window.location.href = "bad_place.html";
+        } else {
+            window.location.href = "good_place.html";
+        }
+    }
+</script>
+
+<footer>
+    Created by Diego Yanes
+</footer>
+
+</body>
+</html>

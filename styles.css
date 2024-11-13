@@ -1,0 +1,43 @@
+body {
+    font-family: 'times new roman'l, sans-serif;
+    background-image: url('images/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+img {
+    width: 300px; 
+    height: 300px;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
